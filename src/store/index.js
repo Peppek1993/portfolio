@@ -7,50 +7,76 @@ export default new Vuex.Store({
   state: {
     apps: [
       {
-        name: 'CV',
-        icon: 'fa-file-csv',
-        isOpen: false,
-        component: 'CV',
-        pos: 1
-      },
-      {
         name: 'Projects',
         icon: 'fa-folder',
-        isOpen: false,
         component: 'Projects',
-        pos: 2
+        posX: null,
+        posY: null,
+        minW: 400,
+        minH: 395,
+        minimized: false,
+        maximized: false
       },
       {
         name: 'About me',
         icon: 'fa-address-card',
-        isOpen: false,
         component: 'About',
-        pos: 3
+        posX: null,
+        posY: null,
+        minW: 700,
+        minH: 395,
+        minimized: false,
+        maximized: false
       },
       {
-        name: 'MS-DOS',
+        name: 'Skills',
         icon: 'fa-gamepad',
-        isOpen: false,
-        component: 'MSDOS',
-        pos: 4
-      },
-      {
-        name: 'Explorer',
-        icon: 'fa-folder-open',
-        isOpen: false,
-        component: 'Explorer',
-        pos: 5
-      },
-      {
-        name: 'Winamp',
-        icon: 'fa-volume-up',
-        isOpen: false,
-        component: 'Winamp',
-        pos: 6
+        component: 'Skills',
+        posX: null,
+        posY: null,
+        minW: 800,
+        minH: 500,
+        minimized: false,
+        maximized: false
       }
     ],
     openedApps: [],
-    activeApp: ''
+    activeApp: '',
+    projects: [
+      {
+        name: 'Lightning Bet',
+        icon: 'fa-volume-up',
+        component: 'LightningBet',
+        posX: null,
+        posY: null,
+        minW: 600,
+        minH: 400,
+        minimized: false,
+        maximized: false
+      },
+      {
+        name: 'Wine Pairing',
+        icon: 'fa-volume-up',
+        component: 'WinePairing',
+        posX: null,
+        posY: null,
+        minW: 600,
+        minH: 400,
+        minimized: false,
+        maximized: false
+      },
+      {
+        name: 'Portfolio',
+        icon: 'fa-volume-up',
+        component: 'Portfolio',
+        posX: null,
+        posY: null,
+        minW: 600,
+        minH: 400,
+        minimized: false,
+        maximized: false
+      }
+    ]
   },
   mutations: {},
   actions: {},

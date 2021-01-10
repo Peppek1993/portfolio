@@ -2,46 +2,87 @@
   <div>
     <div
       v-for="(app, index) in items.openedApps"
-      :key="index"
+      v-show="!app.minimized"
+      :key="index + 'a'"
       class="relative"
       :class="[{ 'z-50 ': app.name == items.activeApp }, app.name]"
       @mousedown="makeActive(app.name)"
     >
       <vue-draggable-resizable
-        :y="-500 + app.pos * 20"
-        :x="50 + app.pos * 10"
+        v-show="!app.maximized"
+        :handles="[]"
+        :resizable="false"
+        :y="app.posY"
+        :x="app.posX"
+        :w="app.minW"
+        :h="app.minH"
+        :min-width="app.minW"
+        :min-height="app.minH"
         drag-handle=".header"
         class="window rounded-xl"
       >
-        <div class="header flex rounded-t-xl select-none">
+        <div class="header flex rounded-t-xl select-none textShadow">
           <ul class="flex py-2 pl-2">
             <a class="button close-btn" @click="exitApp(app)"></a>
-            <a class="button min-btn"></a>
-            <a class="button max-btn"></a>
+            <a class="button min-btn" @click="app.minimized = true"></a>
+            <a class="button max-btn" @click="app.maximized = true"></a>
           </ul>
-          <h1 class="w-full text-center text-white font-thin">
+          <h1 class="w-full text-center text-white font-extralight">
             {{ app.name }}
           </h1>
         </div>
-        <div class="w-full h-full content opacity-50">
+        <div class="w-full h-full content">
           <!-- <pdf src="./../../lightningbet.pdf"></pdf> -->
           <component :is="app.component"></component>
         </div>
       </vue-draggable-resizable>
+    </div>
+    <div
+      v-for="(app, index) in items.openedApps"
+      v-show="app.maximized && !app.minimized"
+      :key="index"
+      :class="[{ 'z-40 ': app.name == items.activeApp }, app.name]"
+      class="fixed bottom-0 w-full h-full pb-8 window"
+    >
+      <div class="header flex select-none textShadow">
+        <ul class="flex py-2 pl-2">
+          <a class="button close-btn" @click="exitApp(app)"></a>
+          <a class="button min-btn" @click="app.minimized = true"></a>
+          <a class="button max-btn" @click="app.maximized = false"></a>
+        </ul>
+        <h1 class="w-full text-center text-white font-extralight">
+          {{ app.name }}
+        </h1>
+      </div>
+      <div class="w-full h-full content">
+        <!-- <pdf src="./../../lightningbet.pdf"></pdf> -->
+        <component :is="app.component"></component>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import CV from './Apps/CV.vue'
-import Winamp from './Apps/Winamp.vue'
 import About from './Apps/About.vue'
 import Explorer from './Apps/Explorer.vue'
-import MSDOS from './Apps/MSDOS.vue'
+import Skills from './Apps/Skills.vue'
 import Projects from './Apps/Projects.vue'
+import LightningBet from './Projects/LightningBet.vue'
+import Portfolio from './Projects/Portfolio.vue'
+import WinePairing from './Projects/WinePairing.vue'
 //import pdf from 'vue-pdf'
 export default {
+  components: {
+    About,
+    Explorer,
+    Skills,
+    Projects,
+    LightningBet,
+    Portfolio,
+    WinePairing
+    //pdf
+  },
   computed: {
     ...mapGetters(['items'])
   },
@@ -53,17 +94,7 @@ export default {
     },
     makeActive(appName) {
       this.items.activeApp = this.activeApp = appName
-      console.log(this.items.activeApp)
     }
-  },
-  components: {
-    CV,
-    Winamp,
-    About,
-    Explorer,
-    MSDOS,
-    Projects
-    //pdf
   }
 }
 </script>
