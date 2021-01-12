@@ -42,6 +42,8 @@ export default new Vuex.Store({
     ],
     openedApps: [],
     activeApp: '',
+    startMenuOpened: false,
+    mode: 'light',
     projects: [
       {
         name: 'Lightning Bet',

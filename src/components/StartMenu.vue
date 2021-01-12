@@ -1,21 +1,17 @@
 <template>
   <div
-    class="p-4 h-full rounded-b-xl text-white font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
+    v-show="items.startMenuOpened"
+    class="fixed bottom-8 w-64 h-96 flex opacity-80"
   >
-    <div class="sm:flex-row sm:flex justify-around items-center h-full">
-      <div v-for="(app, index) in items.projects" :key="index" class="pb-2">
+    <div class="bg-red-500 h-full w-12"></div>
+    <div class="bg-gray-600 h-full w-full">
+      <div v-for="(app, index) in items.apps" :key="index + 'b'">
         <div
-          class=" hover:bg-gray-700  rounded-md p-2 flex flex-col items-center"
-          @click="
-            openApp(app)
-            app.minimized = false
-          "
+          class="w-full h-12 flex items-center justify-start hover:bg-gray-700 duration-150 text-white textShadow font-extralight"
+          @click="openApp(app)"
         >
-          <i class="fas fa-3x px-4 pt-2 text-green-500" :class="app.icon"></i>
-          <p class="text-center text-white font-light text-sm textShadow pt-2">
-            {{ app.name }}
-          </p>
-          <p>{{ app.description }}</p>
+          <i class="fas fa-x px-4 pt-2 text-gray-500" :class="app.icon"></i>
+          <p>{{ app.name }}</p>
         </div>
       </div>
     </div>
@@ -32,7 +28,7 @@ export default {
     openApp(appName) {
       let apps = this.items.openedApps
       let uniqueApps = apps.filter(app => app.name == appName.name)
-      console.log(uniqueApps)
+      this.items.startMenuOpened = false
       if (uniqueApps.length == 0) {
         apps.push(appName)
       }

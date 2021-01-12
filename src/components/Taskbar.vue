@@ -2,7 +2,10 @@
   <div
     class="fixed bottom-0 w-full h-8 bg-gray-900 customGrid opacity-75 z-50 textShadow"
   >
-    <div class="col-start-1 col-end-2">
+    <div
+      class="col-start-1 col-end-2"
+      @click="items.startMenuOpened = !items.startMenuOpened"
+    >
       <i
         class="fab fa-windows fa-lg text-white p-2 hover:text-blue-400 duration-500"
       ></i>

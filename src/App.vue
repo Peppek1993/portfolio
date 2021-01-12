@@ -1,8 +1,15 @@
 <template>
-  <div class="h-screen home overflow-hidden">
+  <div
+    class="h-screen"
+    :class="[
+      { 'light lightMobile': items.mode == 'light' },
+      { 'dark darkMobile ': items.mode == 'dark' }
+    ]"
+  >
     <app-programs></app-programs>
     <app-taskbar></app-taskbar>
     <app-window></app-window>
+    <app-start-menu></app-start-menu>
   </div>
 </template>
 
@@ -10,12 +17,14 @@
 import Taskbar from './components/Taskbar.vue'
 import Programs from './components/Programs.vue'
 import Window from './components/Window.vue'
+import StartMenu from './components/StartMenu.vue'
 import { mapGetters } from 'vuex'
 export default {
   components: {
     appTaskbar: Taskbar,
     appPrograms: Programs,
-    appWindow: Window
+    appWindow: Window,
+    appStartMenu: StartMenu
   },
   computed: {
     ...mapGetters(['items'])
@@ -34,9 +43,41 @@ export default {
 ::-webkit-scrollbar-thumb {
   background: rgb(75, 75, 75);
 }
-.home {
-  background-image: url('./assets/macOS-Catalina-Dark-Mode-wallpaper.jpg');
+.light {
+  background: url('./assets/light_wallpaper.jpg') no-repeat center center fixed
+    #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+}
+
+.dark {
+  background: url('./assets/dark_wallpaper.jpg') no-repeat center center fixed
+    #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .darkMobile {
+    background: url('./assets/dark_mobile.jpg') no-repeat center center fixed
+      #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .lightMobile {
+    background: url('./assets/light_mobile.jpg') no-repeat center center fixed
+      #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
 
 @import url('https://rsms.me/inter/inter.css');

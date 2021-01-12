@@ -22,6 +22,9 @@
         </div>
       </vue-draggable-resizable>
     </div>
+    <div class="w-20 h-20 text-center" @click="switchMode">
+      <i class="fas fa-lightbulb fa-3x text-blue-500 pt-4 text-center"></i>
+    </div>
   </div>
 </template>
 
@@ -34,10 +37,12 @@ export default {
   methods: {
     openApp(appName) {
       let apps = this.items.openedApps
-      apps.push(appName)
-      apps = [...new Set(apps)]
+      let uniqueApps = apps.filter(app => app.name == appName.name)
+      console.log(uniqueApps)
+      if (uniqueApps.length == 0) {
+        apps.push(appName)
+      }
       this.items.activeApp = appName.name
-      console.log(screen.width)
       if (screen.width < 767) {
         for (let i = 0; i < apps.length; i++) {
           apps[i].minW = screen.width - 40
@@ -46,6 +51,13 @@ export default {
       for (let i = 0; i < apps.length; i++) {
         apps[i].posX = screen.width / 2 - apps[i].minW / 2
         apps[i].posY = screen.height / 2 - apps[i].minH / 2 - screen.height / 11
+      }
+    },
+    switchMode() {
+      if (this.items.mode == 'light') {
+        this.items.mode = 'dark'
+      } else if (this.items.mode == 'dark') {
+        this.items.mode = 'light'
       }
     }
   }
