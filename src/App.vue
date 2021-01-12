@@ -1,9 +1,9 @@
 <template>
   <div
-    class="h-screen"
+    class="h-screen overflow-hidden"
     :class="[
       { 'light lightMobile': items.mode == 'light' },
-      { 'dark darkMobile ': items.mode == 'dark' }
+      { 'dark darkMobile text-white textShadow': items.mode == 'dark' }
     ]"
   >
     <app-programs></app-programs>

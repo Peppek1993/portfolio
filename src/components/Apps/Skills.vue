@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="text-white textShadow h-full px-6 overflow-y-auto font-extralight py-4"
-  >
+  <div class=" h-full px-6 overflow-y-auto font-extralight py-4">
     <h1 class="text-2xl text-center font-light text-indigo-300 pb-4">
       Skills
     </h1>

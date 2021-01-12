@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-4 h-full rounded-b-xl text-white font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
+    class="p-4 h-full rounded-b-xl  font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
   >
     <div class="sm:flex-row sm:flex justify-around items-center h-full">
       <div v-for="(app, index) in items.projects" :key="index" class="pb-2">
@@ -12,7 +12,7 @@
           "
         >
           <i class="fas fa-3x px-4 pt-2 text-green-500" :class="app.icon"></i>
-          <p class="text-center text-white font-light text-sm textShadow pt-2">
+          <p class="text-center  font-light text-sm pt-2">
             {{ app.name }}
           </p>
           <p>{{ app.description }}</p>

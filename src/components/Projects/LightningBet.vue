@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="text-white textShadow h-full px-6 py-4 overflow-y-auto font-extralight"
-  >
+  <div class=" h-full px-6 py-4 overflow-y-auto font-extralight">
     <h1 class="text-xl text-center font-light pb-2 text-indigo-300">
       Lightning Bet
     </h1>

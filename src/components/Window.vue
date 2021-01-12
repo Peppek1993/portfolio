@@ -20,8 +20,12 @@
         :min-height="app.minH"
         drag-handle=".header"
         class="window rounded-xl"
+        :class="{ 'windowLight ': items.mode == 'light' }"
       >
-        <div class="header flex rounded-t-xl select-none textShadow">
+        <div
+          class="header flex rounded-t-xl select-none textShadow"
+          :class="{ 'headerLight ': items.mode == 'light' }"
+        >
           <ul class="flex py-2 pl-2">
             <a class="button close-btn" @click="exitApp(app)"></a>
             <a class="button min-btn" @click="app.minimized = true"></a>
@@ -41,16 +45,23 @@
       v-for="(app, index) in items.openedApps"
       v-show="app.maximized && !app.minimized"
       :key="index"
-      :class="[{ 'z-40 ': app.name == items.activeApp }, app.name]"
+      :class="[
+        { 'z-40 ': app.name == items.activeApp },
+        app.name,
+        { 'windowLight ': items.mode == 'light' }
+      ]"
       class="fixed bottom-0 w-full h-full pb-8 window"
     >
-      <div class="header flex select-none textShadow">
+      <div
+        class="header flex select-none"
+        :class="{ 'headerLight ': items.mode == 'light' }"
+      >
         <ul class="flex py-2 pl-2">
           <a class="button close-btn" @click="exitApp(app)"></a>
           <a class="button min-btn" @click="app.minimized = true"></a>
           <a class="button max-btn" @click="app.maximized = false"></a>
         </ul>
-        <h1 class="w-full text-center text-white font-extralight">
+        <h1 class="w-full text-center font-extralight">
           {{ app.name }}
         </h1>
       </div>
@@ -105,11 +116,20 @@ export default {
 .header {
   background-color: rgb(54, 54, 54);
 }
+
+.headerLight {
+  background-color: rgb(225, 225, 225);
+}
 /* Window */
 
 .window {
   background-color: rgb(30, 30, 30);
   border: 0.5px solid rgb(90, 90, 90);
+}
+
+.windowLight {
+  background-color: rgb(252, 252, 252);
+  border: 0.5px solid rgb(180, 180, 180);
 }
 
 /* Content */

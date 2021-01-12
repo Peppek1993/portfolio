@@ -1,17 +1,20 @@
 <template>
   <div
     v-show="items.startMenuOpened"
-    class="fixed bottom-8 w-64 h-96 flex opacity-80"
+    class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none"
   >
-    <div class="bg-red-500 h-full w-12"></div>
-    <div class="bg-gray-600 h-full w-full">
+    <div class="bg-gray-900 h-full w-12"></div>
+    <div class="bg-gray-900 h-full w-full pt-2">
       <div v-for="(app, index) in items.apps" :key="index + 'b'">
         <div
-          class="w-full h-12 flex items-center justify-start hover:bg-gray-700 duration-150 text-white textShadow font-extralight"
+          class="w-full h-12 my-1 flex items-center justify-start hover:bg-gray-600 duration-150 text-white textShadow font-extralight"
           @click="openApp(app)"
         >
-          <i class="fas fa-x px-4 pt-2 text-gray-500" :class="app.icon"></i>
-          <p>{{ app.name }}</p>
+          <i
+            class="fas fa-x text-gray-500 h-12 w-12 text-center py-4 bg-indigo-400"
+            :class="app.icon"
+          ></i>
+          <p class="px-2">{{ app.name }}</p>
         </div>
       </div>
     </div>

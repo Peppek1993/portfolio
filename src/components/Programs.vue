@@ -9,13 +9,16 @@
         :h="80"
       >
         <div
-          class="appClass h-20"
+          class="appClass h-20 w-20"
           @click="
             openApp(app)
             app.minimized = false
           "
         >
-          <i class="fas fa-3x px-4 pt-2 text-green-500" :class="app.icon"></i>
+          <i
+            class="fas fa-3x text-green-500 h-12 w-20 text-center"
+            :class="app.icon"
+          ></i>
           <p class="text-center text-white font-light text-sm textShadow">
             {{ app.name }}
           </p>

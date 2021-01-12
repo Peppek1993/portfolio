@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-full rounded-b-xl text-white font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
+    class="h-full rounded-b-xl font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
   >
     <svg
       id="blobSvg"
@@ -25,7 +25,7 @@
         src="./../../assets/aboutme.jpg"
         class="w-32 sm:w-48 rounded-md shadow float-left mr-2"
       />
-      <section class="textShadow">
+      <section class="">
         <h1 class="font-medium text-3xl text-yellow-400">Hey!</h1>
         <p class="text-base italic">
           My name is Adam Partyka, I'm 27 years old and I live in Cracow,
