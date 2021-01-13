@@ -1,6 +1,5 @@
 <template>
   <div
-    v-click-outside="hide"
     class="fixed bottom-0 w-full h-8 bg-gray-900 customGrid opacity-80 z-50 textShadow text-white"
   >
     <div
@@ -45,9 +44,6 @@ export default {
   methods: {
     makeActive(appName) {
       this.items.activeApp = this.activeApp = appName
-    },
-    hide() {
-      this.items.startMenuOpened = false
     }
   }
 }
