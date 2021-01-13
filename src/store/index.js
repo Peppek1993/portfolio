@@ -38,12 +38,23 @@ export default new Vuex.Store({
         minH: 500,
         minimized: false,
         maximized: false
+      },
+      {
+        name: 'Contact me',
+        icon: 'fa-envelope-open-text',
+        component: 'Contact',
+        posX: null,
+        posY: null,
+        minW: 800,
+        minH: 500,
+        minimized: false,
+        maximized: false
       }
     ],
     openedApps: [],
     activeApp: '',
     startMenuOpened: false,
-    mode: 'light',
+    mode: 'dark',
     projects: [
       {
         name: 'Lightning Bet',

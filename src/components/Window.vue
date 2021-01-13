@@ -66,7 +66,6 @@
         </h1>
       </div>
       <div class="w-full h-full content">
-        <!-- <pdf src="./../../lightningbet.pdf"></pdf> -->
         <component :is="app.component"></component>
       </div>
     </div>
@@ -76,23 +75,21 @@
 <script>
 import { mapGetters } from 'vuex'
 import About from './Apps/About.vue'
-import Explorer from './Apps/Explorer.vue'
 import Skills from './Apps/Skills.vue'
 import Projects from './Apps/Projects.vue'
+import Contact from './Apps/Contact.vue'
 import LightningBet from './Projects/LightningBet.vue'
 import Portfolio from './Projects/Portfolio.vue'
 import WinePairing from './Projects/WinePairing.vue'
-//import pdf from 'vue-pdf'
 export default {
   components: {
     About,
-    Explorer,
     Skills,
     Projects,
     LightningBet,
     Portfolio,
-    WinePairing
-    //pdf
+    WinePairing,
+    Contact
   },
   computed: {
     ...mapGetters(['items'])
@@ -141,8 +138,8 @@ export default {
 
 .button {
   border-radius: 50%;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   margin-right: 8px;
   position: relative;
 }

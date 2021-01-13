@@ -95,4 +95,8 @@ head {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
+
+body {
+  overflow: hidden;
+}
 </style>

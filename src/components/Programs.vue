@@ -25,8 +25,25 @@
         </div>
       </vue-draggable-resizable>
     </div>
-    <div class="w-20 h-20 text-center" @click="switchMode">
-      <i class="fas fa-lightbulb fa-3x text-blue-500 pt-4 text-center"></i>
+    <div
+      v-if="items.mode == 'dark'"
+      class="w-20 h-20 text-center"
+      @click="switchMode"
+    >
+      <i class="fas fa-lightbulb fa-3x text-yellow-200 text-center"></i>
+      <p class="text-center text-white font-light text-sm textShadow">
+        Light mode
+      </p>
+    </div>
+    <div
+      v-if="items.mode == 'light'"
+      class="w-20 h-20 text-center"
+      @click="switchMode"
+    >
+      <i class="fas fa-lightbulb fa-3x text-indigo-900 text-center"></i>
+      <p class="text-center text-white font-light text-sm textShadow">
+        Dark mode
+      </p>
     </div>
   </div>
 </template>

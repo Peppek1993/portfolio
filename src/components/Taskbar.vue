@@ -1,5 +1,6 @@
 <template>
   <div
+    v-click-outside="hide"
     class="fixed bottom-0 w-full h-8 bg-gray-900 customGrid opacity-80 z-50 textShadow text-white"
   >
     <div
@@ -32,14 +33,21 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import { mapGetters } from 'vuex'
 export default {
+  directives: {
+    ClickOutside
+  },
   computed: {
     ...mapGetters(['items'])
   },
   methods: {
     makeActive(appName) {
       this.items.activeApp = this.activeApp = appName
+    },
+    hide() {
+      this.items.startMenuOpened = false
     }
   }
 }

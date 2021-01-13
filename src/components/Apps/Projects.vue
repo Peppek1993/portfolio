@@ -5,7 +5,11 @@
     <div class="sm:flex-row sm:flex justify-around items-center h-full">
       <div v-for="(app, index) in items.projects" :key="index" class="pb-2">
         <div
-          class=" hover:bg-gray-700  rounded-md p-2 flex flex-col items-center"
+          class="rounded-md p-2 flex flex-col items-center"
+          :class="[
+            { 'hover:bg-gray-800': items.mode == 'dark' },
+            { 'hover:bg-green-200': items.mode == 'light' }
+          ]"
           @click="
             openApp(app)
             app.minimized = false
