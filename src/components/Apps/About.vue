@@ -28,7 +28,7 @@
       <section class="">
         <h1 class="font-medium text-3xl text-yellow-400">Hey!</h1>
         <p class="text-base italic">
-          My name is Adam Partyka, I'm 27 years old and I live in Cracow,
+          My name is AAdam Partyka, I'm 27 years old and I live in Cracow,
           Poland. I'm a self-taught web developer, focusing mostly on the front
           end. I've graduated from Kielce University of Technology with
           Engineering degree in Surveying and Cartography. I've spent majority
