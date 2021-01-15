@@ -2,7 +2,7 @@
   <div
     class="p-4 h-full rounded-b-xl  font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
   >
-    <div class="sm:flex-row sm:flex justify-around items-center h-full">
+    <div class="flex-row flex justify-around items-center h-full">
       <div v-for="(app, index) in items.projects" :key="index" class="pb-2">
         <div
           class="rounded-md p-2 flex flex-col items-center"
@@ -10,10 +10,7 @@
             { 'hover:bg-gray-800': items.mode == 'dark' },
             { 'hover:bg-green-200': items.mode == 'light' }
           ]"
-          @click="
-            openApp(app)
-            app.minimized = false
-          "
+          @click="openApp(app)"
         >
           <i class="fas fa-3x px-4 pt-2 text-green-500" :class="app.icon"></i>
           <p class="text-center  font-light text-sm pt-2">
@@ -36,7 +33,6 @@ export default {
     openApp(appName) {
       let apps = this.items.openedApps
       let uniqueApps = apps.filter(app => app.name == appName.name)
-      console.log(uniqueApps)
       if (uniqueApps.length == 0) {
         apps.push(appName)
       }

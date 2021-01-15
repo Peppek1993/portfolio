@@ -1,6 +1,12 @@
 <template>
   <div class="p-2 select-none absolute">
-    <div v-for="(app, index) in items.apps" :key="index" class="pb-24">
+    <!--App icons -->
+    <div
+      v-for="(app, index) in items.apps"
+      ref="appIcon"
+      :key="index"
+      class="pb-24"
+    >
       <vue-draggable-resizable
         :handles="[]"
         class-name-active="app-active-class"
@@ -8,13 +14,7 @@
         :w="80"
         :h="80"
       >
-        <div
-          class="appClass h-20 w-20"
-          @click="
-            openApp(app)
-            app.minimized = false
-          "
-        >
+        <div class="appClass h-20 w-20" @click="openApp(app)">
           <i
             class="fas fa-3x text-green-500 h-12 w-20 text-center"
             :class="app.icon"
@@ -25,8 +25,10 @@
         </div>
       </vue-draggable-resizable>
     </div>
+    <!-- Dark/light mode switcher -->
     <div
       v-if="items.mode == 'dark'"
+      ref="light"
       class="w-20 h-20 text-center"
       @click="switchMode"
     >
@@ -49,28 +51,53 @@
 </template>
 
 <script>
+import { TimelineLite } from 'gsap'
 import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters(['items'])
   },
+  mounted() {
+    const { appIcon, light } = this.$refs
+    const timeline = new TimelineLite()
+
+    timeline
+      .to(light, 0, { opacity: 0, scale: 0.5 })
+      .from(appIcon, 0.6, {
+        delay: 0.2,
+        translateY: -200,
+        translateX: -100,
+        opacity: 0,
+        stagger: 0.2,
+        ease: 'back'
+      })
+      .to(light, 0.2, { opacity: 1, scale: 1 })
+      .to(light, 0.1, { scale: 0.8 })
+      .to(light, 0.1, { scale: 1 })
+  },
   methods: {
     openApp(appName) {
-      let apps = this.items.openedApps
-      let uniqueApps = apps.filter(app => app.name == appName.name)
-      console.log(uniqueApps)
-      if (uniqueApps.length == 0) {
-        apps.push(appName)
+      let store = this.items
+      let openedApps = store.openedApps
+      let allApps = openedApps.concat(
+        openedApps,
+        store.minimizedApps,
+        store.maximizedApps
+      )
+      store.minimizedApps = store.minimizedApps.filter(x => x !== appName)
+      if (allApps.filter(app => app.name == appName.name) == 0) {
+        openedApps.push(appName)
       }
-      this.items.activeApp = appName.name
+      store.activeApp = appName.name
       if (screen.width < 767) {
-        for (let i = 0; i < apps.length; i++) {
-          apps[i].minW = screen.width - 40
+        for (let i = 0; i < openedApps.length; i++) {
+          openedApps[i].minW = screen.width - 40
         }
       }
-      for (let i = 0; i < apps.length; i++) {
-        apps[i].posX = screen.width / 2 - apps[i].minW / 2
-        apps[i].posY = screen.height / 2 - apps[i].minH / 2 - screen.height / 11
+      for (let i = 0; i < openedApps.length; i++) {
+        openedApps[i].posX = screen.width / 2 - openedApps[i].minW / 2
+        openedApps[i].posY =
+          screen.height / 2 - openedApps[i].minH / 2 - screen.height / 11
       }
     },
     switchMode() {

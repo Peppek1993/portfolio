@@ -13,9 +13,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 400,
-        minH: 395,
-        minimized: false,
-        maximized: false
+        minH: 200
       },
       {
         name: 'About me',
@@ -24,9 +22,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 700,
-        minH: 395,
-        minimized: false,
-        maximized: false
+        minH: 395
       },
       {
         name: 'Skills',
@@ -35,9 +31,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 800,
-        minH: 500,
-        minimized: false,
-        maximized: false
+        minH: 500
       },
       {
         name: 'Contact me',
@@ -45,13 +39,13 @@ export default new Vuex.Store({
         component: 'Contact',
         posX: null,
         posY: null,
-        minW: 800,
-        minH: 500,
-        minimized: false,
-        maximized: false
+        minW: 300,
+        minH: 400
       }
     ],
     openedApps: [],
+    minimizedApps: [],
+    maximizedApps: [],
     activeApp: '',
     startMenuOpened: false,
     mode: 'dark',
@@ -63,9 +57,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 600,
-        minH: 400,
-        minimized: false,
-        maximized: false
+        minH: 400
       },
       {
         name: 'Wine Pairing',
@@ -74,9 +66,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 600,
-        minH: 400,
-        minimized: false,
-        maximized: false
+        minH: 400
       },
       {
         name: 'Portfolio',
@@ -85,9 +75,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 600,
-        minH: 400,
-        minimized: false,
-        maximized: false
+        minH: 400
       }
     ]
   },

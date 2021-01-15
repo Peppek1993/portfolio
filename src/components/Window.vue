@@ -1,15 +1,15 @@
 <template>
   <div>
+    <!--Regular apps -->
     <div
       v-for="(app, index) in items.openedApps"
-      v-show="!app.minimized"
       :key="index + 'a'"
+      ref="window"
       class="relative"
       :class="[{ 'z-50 ': app.name == items.activeApp }, app.name]"
       @mousedown="makeActive(app.name)"
     >
       <vue-draggable-resizable
-        v-show="!app.maximized"
         :handles="[]"
         :resizable="false"
         :y="app.posY"
@@ -27,24 +27,24 @@
           :class="{ 'headerLight ': items.mode == 'light' }"
         >
           <ul class="flex py-2 pl-2">
-            <a class="button close-btn" @click="exitApp(app)"></a>
-            <a class="button min-btn" @click="app.minimized = true"></a>
-            <a class="button max-btn" @click="app.maximized = true"></a>
+            <a class="button close-btn" @click="exitApp(app, 'openedApps')"></a>
+            <a class="button min-btn" @click="minimize(app, 'openedApps')"></a>
+            <a class="button max-btn" @click="maximize(app)"></a>
           </ul>
           <h1 class="w-full text-center text-white font-extralight">
             {{ app.name }}
           </h1>
         </div>
         <div class="w-full h-full content">
-          <!-- <pdf src="./../../lightningbet.pdf"></pdf> -->
           <component :is="app.component"></component>
         </div>
       </vue-draggable-resizable>
     </div>
+    <!-- Maximized apps -->
     <div
-      v-for="(app, index) in items.openedApps"
-      v-show="app.maximized && !app.minimized"
+      v-for="(app, index) in items.maximizedApps"
       :key="index"
+      ref="window"
       :class="[
         { 'z-40 ': app.name == items.activeApp },
         app.name,
@@ -57,9 +57,12 @@
         :class="{ 'headerLight ': items.mode == 'light' }"
       >
         <ul class="flex py-2 pl-2">
-          <a class="button close-btn" @click="exitApp(app)"></a>
-          <a class="button min-btn" @click="app.minimized = true"></a>
-          <a class="button max-btn" @click="app.maximized = false"></a>
+          <a
+            class="button close-btn"
+            @click="exitApp(app, 'maximizedApps')"
+          ></a>
+          <a class="button min-btn" @click="minimize(app, 'maximizedApps')"></a>
+          <a class="button max-btn" @click="unMaximize(app)"></a>
         </ul>
         <h1 class="w-full text-center font-extralight">
           {{ app.name }}
@@ -74,6 +77,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { TimelineLite } from 'gsap'
 import About from './Apps/About.vue'
 import Skills from './Apps/Skills.vue'
 import Projects from './Apps/Projects.vue'
@@ -94,14 +98,36 @@ export default {
   computed: {
     ...mapGetters(['items'])
   },
+  mounted() {
+    let { appWindow } = this.$refs
+    let timeline = new TimelineLite()
+
+    timeline.from(appWindow, 1, { opacity: 0 })
+  },
   methods: {
-    exitApp(appName) {
-      this.items.openedApps = this.items.openedApps.filter(
+    makeActive(appName) {
+      this.items.activeApp = this.activeApp = appName
+    },
+    exitApp(appName, arrayName) {
+      this.items[arrayName] = this.items[arrayName].filter(
         app => app !== appName
       )
     },
-    makeActive(appName) {
-      this.items.activeApp = this.activeApp = appName
+    maximize(appName) {
+      this.items.maximizedApps.push(appName)
+      this.exitApp(appName, 'openedApps')
+    },
+    unMaximize(appName) {
+      this.items.maximizedApps = this.items.maximizedApps.filter(
+        app => app !== appName
+      )
+      this.items.openedApps.push(appName)
+    },
+    minimize(appName, arrayName) {
+      this.items[arrayName] = this.items[arrayName].filter(
+        app => app !== appName
+      )
+      this.items.minimizedApps.push(appName)
     }
   }
 }

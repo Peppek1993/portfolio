@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="items.startMenuOpened"
-    class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none"
+    class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none z-50"
   >
     <div
       v-show="!items.sideMenuOpened"
