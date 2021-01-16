@@ -11,7 +11,7 @@
       >
         <div
           class="appClass h-20 w-20"
-          @dblclick="
+          @click="
             openApp(app)
             getClickPosition($event, index)
             resizeAndPlace()
