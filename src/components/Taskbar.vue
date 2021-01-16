@@ -19,30 +19,13 @@
         class="taskApp duration-200 h-full md:w-40  flex mr-1"
         :class="[{ 'activeApp ': app.name == items.activeApp }, app.name]"
         @click="
-          makeActive(app.name)
-          unMinimize(app)
+          makeActive(app)
+          getClickPosition($event)
+          unMinimize(app, index)
         "
       >
         <i class="fas fa px-2 md:px-4 pt-2 text-blue-500" :class="app.icon"></i>
         <p class="px-1 py-1 hidden md:inline-block">{{ app.name }}</p>
-      </div>
-      <div class="col-start-2 col-end-3 flex select-none font-extralight">
-        <div
-          v-for="(app, index) in items.minimizedApps"
-          :key="index"
-          class="taskApp duration-200 h-full md:w-40  flex mr-1"
-          :class="[{ 'activeApp ': app.name == items.activeApp }, app.name]"
-          @click="
-            makeActive(app.name)
-            unMinimize(app)
-          "
-        >
-          <i
-            class="fas fa px-2 md:px-4 pt-2 text-blue-500"
-            :class="app.icon"
-          ></i>
-          <p class="px-1 py-1 hidden md:inline-block">{{ app.name }}</p>
-        </div>
       </div>
     </div>
     <!-- Time & Date -->
@@ -54,19 +37,33 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { gsap } from 'gsap'
 export default {
   computed: {
     ...mapGetters(['items'])
   },
   methods: {
     makeActive(appName) {
-      this.items.activeApp = this.activeApp = appName
+      this.items.activeApp = this.activeApp = appName.name
+      appName.minimized = false
     },
-    unMinimize(appName) {
-      this.items.minimizedApps = this.items.minimizedApps.filter(
-        app => app !== appName
-      )
-      this.items.openedApps.push(appName)
+    getClickPosition(event) {
+      this.items.mostRecentClick = {
+        x: event.clientX,
+        y: event.clientY
+      }
+    },
+    unMinimize(appName, index) {
+      setTimeout(() => {
+        appName.minimized = false
+      }, 200)
+
+      let test = this.items.apps[index].ref
+      gsap.to(test, 0.2, {
+        scale: 1,
+        translateX: index,
+        translateY: index
+      })
     }
   }
 }

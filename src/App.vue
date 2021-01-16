@@ -1,6 +1,7 @@
 <template>
   <div
     class="h-screen overflow-hidden"
+    id="main"
     :class="[
       { 'light lightMobile': items.mode == 'light' },
       { 'dark darkMobile text-white textShadow': items.mode == 'dark' }

@@ -1,12 +1,7 @@
 <template>
   <div class="p-2 select-none absolute">
     <!--App icons -->
-    <div
-      v-for="(app, index) in items.apps"
-      ref="appIcon"
-      :key="index"
-      class="pb-24"
-    >
+    <div v-for="(app, index) in apps" ref="appIcon" :key="index" class="pb-24">
       <vue-draggable-resizable
         :handles="[]"
         class-name-active="app-active-class"
@@ -14,7 +9,14 @@
         :w="80"
         :h="80"
       >
-        <div class="appClass h-20 w-20" @click="openApp(app)">
+        <div
+          class="appClass h-20 w-20"
+          @dblclick="
+            openApp(app)
+            getClickPosition($event, index)
+            resizeAndPlace()
+          "
+        >
           <i
             class="fas fa-3x text-green-500 h-12 w-20 text-center"
             :class="app.icon"
@@ -55,7 +57,10 @@ import { TimelineLite } from 'gsap'
 import { mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapGetters(['items'])
+    ...mapGetters(['items']),
+    apps() {
+      return this.items.apps.filter(app => app.tag == 'app')
+    }
   },
   mounted() {
     const { appIcon, light } = this.$refs
@@ -77,27 +82,24 @@ export default {
   },
   methods: {
     openApp(appName) {
-      let store = this.items
-      let openedApps = store.openedApps
-      let allApps = openedApps.concat(
-        openedApps,
-        store.minimizedApps,
-        store.maximizedApps
-      )
-      store.minimizedApps = store.minimizedApps.filter(x => x !== appName)
-      if (allApps.filter(app => app.name == appName.name) == 0) {
+      let openedApps = this.items.openedApps
+      if (openedApps.filter(app => app.name == appName.name).length == 0) {
         openedApps.push(appName)
       }
-      store.activeApp = appName.name
-      if (screen.width < 767) {
+      this.items.activeApp = appName.name
+    },
+    resizeAndPlace() {
+      let openedApps = this.items.openedApps
+      let customHeight = document.getElementById('main').clientHeight
+      let customWidth = document.getElementById('main').clientWidth
+      if (customWidth < 767) {
         for (let i = 0; i < openedApps.length; i++) {
-          openedApps[i].minW = screen.width - 40
+          openedApps[i].minW = customWidth - 40
         }
       }
       for (let i = 0; i < openedApps.length; i++) {
-        openedApps[i].posX = screen.width / 2 - openedApps[i].minW / 2
-        openedApps[i].posY =
-          screen.height / 2 - openedApps[i].minH / 2 - screen.height / 11
+        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
+        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
       }
     },
     switchMode() {
@@ -106,6 +108,14 @@ export default {
       } else if (this.items.mode == 'dark') {
         this.items.mode = 'light'
       }
+    },
+    getClickPosition(event, index) {
+      this.items.mostRecentClick = {
+        x: event.clientX,
+        y: event.clientY
+      }
+      this.items.apps[index].x = event.clientX
+      this.items.apps[index].y = event.clientY
     }
   }
 }

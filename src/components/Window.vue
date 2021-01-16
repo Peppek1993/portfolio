@@ -1,83 +1,55 @@
 <template>
   <div>
     <!--Regular apps -->
-    <div
-      v-for="(app, index) in items.openedApps"
-      :key="index + 'a'"
-      ref="window"
-      class="relative"
-      :class="[{ 'z-50 ': app.name == items.activeApp }, app.name]"
-      @mousedown="makeActive(app.name)"
-    >
-      <vue-draggable-resizable
-        :handles="[]"
-        :resizable="false"
-        :y="app.posY"
-        :x="app.posX"
-        :w="app.minW"
-        :h="app.minH"
-        :min-width="app.minW"
-        :min-height="app.minH"
-        drag-handle=".header"
-        class="window rounded-xl"
-        :class="{ 'windowLight ': items.mode == 'light' }"
-      >
-        <div
-          class="header flex rounded-t-xl select-none textShadow"
-          :class="{ 'headerLight ': items.mode == 'light' }"
-        >
-          <ul class="flex py-2 pl-2">
-            <a class="button close-btn" @click="exitApp(app, 'openedApps')"></a>
-            <a class="button min-btn" @click="minimize(app, 'openedApps')"></a>
-            <a class="button max-btn" @click="maximize(app)"></a>
-          </ul>
-          <h1 class="w-full text-center text-white font-extralight">
-            {{ app.name }}
-          </h1>
-        </div>
-        <div class="w-full h-full content">
-          <component :is="app.component"></component>
-        </div>
-      </vue-draggable-resizable>
-    </div>
-    <!-- Maximized apps -->
-    <div
-      v-for="(app, index) in items.maximizedApps"
-      :key="index"
-      ref="window"
-      :class="[
-        { 'z-40 ': app.name == items.activeApp },
-        app.name,
-        { 'windowLight ': items.mode == 'light' }
-      ]"
-      class="fixed bottom-0 w-full h-full pb-8 window"
-    >
+    <transition-group appear :css="false" @enter="enter" @leave="leave">
       <div
-        class="header flex select-none"
-        :class="{ 'headerLight ': items.mode == 'light' }"
+        v-for="(app, index) in items.openedApps"
+        :id="index"
+        :key="index + 'a'"
+        ref="window"
+        class="relative"
+        :class="[{ 'z-50 ': app.name == items.activeApp }, app.name]"
+        @mousedown="makeActive(app.name)"
       >
-        <ul class="flex py-2 pl-2">
-          <a
-            class="button close-btn"
-            @click="exitApp(app, 'maximizedApps')"
-          ></a>
-          <a class="button min-btn" @click="minimize(app, 'maximizedApps')"></a>
-          <a class="button max-btn" @click="unMaximize(app)"></a>
-        </ul>
-        <h1 class="w-full text-center font-extralight">
-          {{ app.name }}
-        </h1>
+        <vue-draggable-resizable
+          v-if="app.minimized == false"
+          :resizable="false"
+          :y="app.posY"
+          :x="app.posX"
+          :w="app.minW"
+          :h="app.minH"
+          drag-handle=".header"
+          class="window rounded-xl"
+          :class="{ 'windowLight ': items.mode == 'light' }"
+        >
+          <div
+            class="header flex rounded-t-xl select-none textShadow"
+            :class="{ 'headerLight ': items.mode == 'light' }"
+          >
+            <ul class="flex py-2 pl-2">
+              <a
+                class="button close-btn"
+                @click="exitApp(app, 'openedApps')"
+              ></a>
+              <a class="button min-btn" @click="minimize(app, index)"></a>
+              <a class="button max-btn"></a>
+            </ul>
+            <h1 class="w-full text-center text-white font-extralight">
+              {{ app.name }}
+            </h1>
+          </div>
+          <div class="w-full h-full content">
+            <component :is="app.component"></component>
+          </div>
+        </vue-draggable-resizable>
       </div>
-      <div class="w-full h-full content">
-        <component :is="app.component"></component>
-      </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { TimelineLite } from 'gsap'
+import { gsap } from 'gsap'
 import About from './Apps/About.vue'
 import Skills from './Apps/Skills.vue'
 import Projects from './Apps/Projects.vue'
@@ -98,12 +70,6 @@ export default {
   computed: {
     ...mapGetters(['items'])
   },
-  mounted() {
-    let { appWindow } = this.$refs
-    let timeline = new TimelineLite()
-
-    timeline.from(appWindow, 1, { opacity: 0 })
-  },
   methods: {
     makeActive(appName) {
       this.items.activeApp = this.activeApp = appName
@@ -113,21 +79,40 @@ export default {
         app => app !== appName
       )
     },
-    maximize(appName) {
-      this.items.maximizedApps.push(appName)
-      this.exitApp(appName, 'openedApps')
+    minimize(appName, index) {
+      let customHeight = document.getElementById('main').clientHeight
+      let customWidth = document.getElementById('main').clientWidth
+      setTimeout(() => {
+        appName.minimized = true
+      }, 200)
+
+      let test = this.$refs.window[index]
+      gsap.to(test, 0.2, {
+        scale: 0,
+        translateX: -customWidth / 2 + 100 + index * 160,
+        translateY: customHeight - 20
+      })
+      this.items.apps[index].ref = test
     },
-    unMaximize(appName) {
-      this.items.maximizedApps = this.items.maximizedApps.filter(
-        app => app !== appName
-      )
-      this.items.openedApps.push(appName)
+    enter(el, done) {
+      let customWidth = document.getElementById('main').clientWidth
+      this.items.apps[el.id].x = this.items.mostRecentClick.x
+      this.items.apps[el.id].y = this.items.mostRecentClick.y
+      gsap.from(el, 0.5, {
+        scale: 0,
+        translateX: -customWidth / 2 + this.items.apps[el.id].x,
+        translateY: this.items.apps[el.id].y,
+        onComplete: done
+      })
     },
-    minimize(appName, arrayName) {
-      this.items[arrayName] = this.items[arrayName].filter(
-        app => app !== appName
-      )
-      this.items.minimizedApps.push(appName)
+    leave(el, done) {
+      let customWidth = document.getElementById('main').clientWidth
+      gsap.to(el, 0.2, {
+        scale: 0,
+        translateX: -customWidth / 2 + this.items.apps[el.id].x,
+        translateY: this.items.apps[el.id].y,
+        onComplete: done
+      })
     }
   }
 }
