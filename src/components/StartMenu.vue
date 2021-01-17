@@ -1,15 +1,12 @@
 <template>
   <div
     v-show="items.startMenuOpened"
-    class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none z-50"
+    class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none z-50 text-center text-white font-extralight"
   >
-    <div
-      v-show="!items.sideMenuOpened"
-      class="bg-gray-900 h-full w-full pl-12 pt-2"
-    >
-      <div v-for="(app, index) in items.apps" :key="index + 'b'">
+    <div class="bg-gray-900 w-full pl-12 pt-2">
+      <div v-for="(app, index) in items.apps" :key="index">
         <div
-          class="w-full h-12 my-1 flex items-center justify-start hover:bg-gray-600 duration-150 text-white textShadow font-extralight"
+          class="my-1 flex items-center justify-start hover:bg-gray-600 duration-150 textShadow "
           @click="
             openApp(app)
             getClickPosition($event)
@@ -17,19 +14,19 @@
           "
         >
           <i
-            class="fas fa-x text-gray-500 h-12 w-12 text-center py-4 bg-indigo-400"
-            :class="app.icon"
+            class="fas fa-x w-12 py-4 bg-blue-200 rounded-lg"
+            :class="[app.icon, app.iconColor]"
           ></i>
           <p class="px-2">{{ app.name }}</p>
         </div>
       </div>
     </div>
     <div
-      class="bg-gray-900 h-96 w-12 fixed flex flex-col items-start justify-between sideMenu text-white"
+      class="bg-gray-900 h-96 w-12 fixed flex flex-col justify-between sideMenu"
     >
-      <div class="text-3xl p-2 font-extralight flex">
+      <div class="text-3xl p-2 flex">
         <p>☰</p>
-        <span class="px-4 sideText font-extralight">Start</span>
+        <span class="px-4 none sideText">Start</span>
       </div>
       <div class="flex flex-col w-full">
         <a
@@ -38,14 +35,14 @@
           class="flex items-center hover:bg-gray-700 duration-100 px-2"
         >
           <i class="fab fa-github fa-lg py-4"></i>
-          <p class="px-4 sideText font-extralight">Github</p>
+          <p class="px-4 sideText">Github</p>
         </a>
         <div
           class="flex items-center hover:bg-gray-700 duration-100 px-2 cursor-pointer"
           @click="reload"
         >
           <i class="fas fa-power-off fa-lg py-4"></i>
-          <p class="px-4 sideText font-extralight">Power</p>
+          <p class="px-4 sideText">Power</p>
         </div>
       </div>
     </div>
@@ -61,6 +58,7 @@ export default {
   methods: {
     openApp(appName) {
       let openedApps = this.items.openedApps
+      this.items.startMenuOpened = false
       if (openedApps.filter(app => app.name == appName.name).length == 0) {
         openedApps.push(appName)
       }
@@ -70,14 +68,14 @@ export default {
       let openedApps = this.items.openedApps
       let customHeight = document.getElementById('main').clientHeight
       let customWidth = document.getElementById('main').clientWidth
+      for (let i = 0; i < openedApps.length; i++) {
+        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
+        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
+      }
       if (customWidth < 767) {
         for (let i = 0; i < openedApps.length; i++) {
           openedApps[i].minW = customWidth - 40
         }
-      }
-      for (let i = 0; i < openedApps.length; i++) {
-        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
-        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
       }
     },
     reload() {
@@ -94,9 +92,11 @@ export default {
 </script>
 
 <style>
+/* Side menu animations */
 .sideMenu {
   transition: width 200ms ease;
 }
+
 .sideMenu:hover .sideText {
   display: block;
 }

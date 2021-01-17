@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
+.skillsHeadline {
+  @apply text-2xl font-light text-indigo-300 py-4;
+}
+
+.skillsIcon {
+  @apply flex flex-col items-center px-4;
+}
 @tailwind utilities;

@@ -2,16 +2,14 @@
   <div
     class="fixed bottom-0 w-full h-8 bg-gray-900 customGrid opacity-80 z-50 textShadow text-white"
   >
-    <!-- Start menu icon -->
     <div
       class="col-start-1 col-end-2"
       @click="items.startMenuOpened = !items.startMenuOpened"
     >
       <i
-        class="fab fa-windows fa-lg  p-2 hover:text-blue-400 hover:bg-gray-700 duration-500"
+        class="fab fa-windows fa-lg p-2 hover:text-blue-400 hover:bg-gray-700 duration-500"
       ></i>
     </div>
-    <!-- Taskbar apps -->
     <div class="col-start-2 col-end-3 flex select-none font-extralight">
       <div
         v-for="(app, index) in items.openedApps"
@@ -28,7 +26,6 @@
         <p class="px-1 py-1 hidden md:inline-block">{{ app.name }}</p>
       </div>
     </div>
-    <!-- Time & Date -->
     <div class="col-start-3 col-end-4 py-1  font-extralight">
       28.12 17:32
     </div>
@@ -57,7 +54,6 @@ export default {
       setTimeout(() => {
         appName.minimized = false
       }, 200)
-
       let test = this.items.apps[index].ref
       gsap.to(test, 0.2, {
         scale: 1,

@@ -1,10 +1,10 @@
 <template>
   <div
-    class="h-screen overflow-hidden"
     id="main"
+    class="h-screen overflow-hidden duration-1000"
     :class="[
-      { 'light lightMobile': items.mode == 'light' },
-      { 'dark darkMobile text-white textShadow': items.mode == 'dark' }
+      { 'light lightMobile': items.mode == 'Light' },
+      { 'dark darkMobile text-white textShadow': items.mode == 'Dark' }
     ]"
   >
     <app-programs></app-programs>
@@ -34,6 +34,7 @@ export default {
 </script>
 
 <style>
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -44,6 +45,23 @@ export default {
 ::-webkit-scrollbar-thumb {
   background: rgb(75, 75, 75);
 }
+
+/* Desktop icon highlight */
+.app-active-class,
+.appClass:hover {
+  background-color: rgba(165, 215, 238, 0.5);
+  border: 1px solid rgba(165, 215, 238, 0.7);
+}
+
+/* Custom text shadow font */
+
+.textShadow {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 1px 1px rgba(0, 0, 0, 0.5),
+    0 1px 2px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.75), 0 1px 3px #000,
+    0 1px 3px #000;
+}
+
+/* Wallpapers */
 .light {
   background: url('./assets/light_wallpaper.jpg') no-repeat center center fixed
     #000;
@@ -79,25 +97,5 @@ export default {
     -o-background-size: cover;
     background-size: cover;
   }
-}
-
-@import url('https://rsms.me/inter/inter.css');
-html {
-  font-family: 'Inter', sans-serif;
-}
-@supports (font-variation-settings: normal) {
-  html {
-    font-family: 'Inter var', sans-serif;
-  }
-}
-
-head {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-body {
-  overflow: hidden;
 }
 </style>

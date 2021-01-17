@@ -1,10 +1,10 @@
 <template>
-  <div class=" h-full px-6 py-4 overflow-y-auto font-extralight">
-    <h1 class="text-xl text-center font-light pb-2 text-indigo-300">
+  <div class="h-full px-6 overflow-y-auto font-extralight text-center">
+    <h1 class="skillsHeadline">
       Lightning Bet
     </h1>
-    <img src="./../../assets/lightningbet/header.png" class="py-6" />
-    <p>
+    <img src="./../../assets/lightningbet/header.png" />
+    <p class="pt-2">
       Lightning Bet is a prototype for an esport/sport betting website. You can
       place bets on different matches in various disciplines including Counter
       Strike: Global Offensive, League of Legends, DOTA 2, but also American
@@ -12,14 +12,14 @@
       the betting odds are calculated based on the percentage chance you might
       think a team has to win the game.
     </p>
-    <h1 class="text-center font-light text-xl text-indigo-300 py-6">
+    <h1 class="skillsHeadline">
       Technologies used
     </h1>
     <div class="flex items-center justify-center">
       <img src="./../../assets/icons/vue.png" class="w-12" />
       <img src="./../../assets/icons/tailwind.svg" class="w-12" />
     </div>
-    <h1 class="text-center font-light text-xl text-indigo-300 py-6">
+    <h1 class="skillsHeadline">
       Demo & Github
     </h1>
     <div class="flex items-center justify-center pb-10">

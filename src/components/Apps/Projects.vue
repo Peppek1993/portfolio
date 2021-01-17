@@ -1,27 +1,31 @@
 <template>
   <div
-    class="p-4 h-full rounded-b-xl  font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden relative"
+    class="h-full rounded-b-xl font-light text-lg flex justify-around items-center"
   >
-    <div class="flex-row flex justify-around items-center h-full">
-      <div v-for="(app, index) in projects" :key="index" class="pb-2">
-        <div
-          class="rounded-md p-2 flex flex-col items-center"
+    <div v-for="(app, index) in projects" :key="index">
+      <div
+        class="rounded-md p-2 flex flex-col items-center duration-500"
+        :class="[
+          { 'hover:bg-gray-800': items.mode == 'Dark' },
+          { 'hover:bg-indigo-100': items.mode == 'Light' }
+        ]"
+        @click="
+          openApp(app)
+          getClickPosition($event)
+          resizeAndPlace()
+        "
+      >
+        <i
+          class="fas fa-3x px-4 pt-2"
           :class="[
-            { 'hover:bg-gray-800': items.mode == 'dark' },
-            { 'hover:bg-green-200': items.mode == 'light' }
+            { 'text-green-200': items.mode == 'Dark' },
+            { 'text-green-800': items.mode == 'Light' },
+            app.icon
           ]"
-          @click="
-            openApp(app)
-            getClickPosition($event)
-            resizeAndPlace()
-          "
-        >
-          <i class="fas fa-3x px-4 pt-2 text-green-500" :class="app.icon"></i>
-          <p class="text-center  font-light text-sm pt-2">
-            {{ app.name }}
-          </p>
-          <p>{{ app.description }}</p>
-        </div>
+        ></i>
+        <p class="font-light text-sm pt-2">
+          {{ app.name }}
+        </p>
       </div>
     </div>
   </div>
@@ -48,14 +52,14 @@ export default {
       let openedApps = this.items.openedApps
       let customHeight = document.getElementById('main').clientHeight
       let customWidth = document.getElementById('main').clientWidth
+      for (let i = 0; i < openedApps.length; i++) {
+        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
+        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
+      }
       if (customWidth < 767) {
         for (let i = 0; i < openedApps.length; i++) {
           openedApps[i].minW = customWidth - 40
         }
-      }
-      for (let i = 0; i < openedApps.length; i++) {
-        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
-        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
       }
     },
     getClickPosition(event) {

@@ -26,7 +26,7 @@
         class="w-32 sm:w-48 rounded-md shadow float-left mr-2"
       />
       <section class="">
-        <h1 class="font-medium text-3xl text-yellow-400">Hey!</h1>
+        <h1 class="text-3xl text-indigo-200">Hey!</h1>
         <p class="text-base">
           My name is Adam Partyka, I'm 27 years old and I live in Cracow,
           Poland. I'm a self-taught web developer, focusing mostly on the front
@@ -49,16 +49,10 @@ export default {}
 </script>
 
 <style>
-.imagePosition {
-  position: absolute;
-  top: 25px;
-  left: 10px;
-}
-
 .blob {
-  z-index: -1;
   animation: move 10s ease-in-out infinite;
   transform-origin: 50% 50%;
+  z-index: -1;
 }
 @keyframes move {
   0% {

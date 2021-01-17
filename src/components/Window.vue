@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!--Regular apps -->
-    <transition-group appear :css="false" @enter="enter" @leave="leave">
+    <transition-group :css="false" @enter="enter" @leave="leave">
       <div
         v-for="(app, index) in items.openedApps"
         :id="index"
@@ -20,17 +19,14 @@
           :h="app.minH"
           drag-handle=".header"
           class="window rounded-xl"
-          :class="{ 'windowLight ': items.mode == 'light' }"
+          :class="{ 'windowLight ': items.mode == 'Light' }"
         >
           <div
             class="header flex rounded-t-xl select-none textShadow"
-            :class="{ 'headerLight ': items.mode == 'light' }"
+            :class="{ 'headerLight ': items.mode == 'Light' }"
           >
             <ul class="flex py-2 pl-2">
-              <a
-                class="button close-btn"
-                @click="exitApp(app, 'openedApps')"
-              ></a>
+              <a class="button close-btn" @click="exitApp(app)"></a>
               <a class="button min-btn" @click="minimize(app, index)"></a>
               <a class="button max-btn"></a>
             </ul>
@@ -38,7 +34,7 @@
               {{ app.name }}
             </h1>
           </div>
-          <div class="w-full h-full content">
+          <div class="w-full h-full pb-7">
             <component :is="app.component"></component>
           </div>
         </vue-draggable-resizable>
@@ -74,8 +70,8 @@ export default {
     makeActive(appName) {
       this.items.activeApp = this.activeApp = appName
     },
-    exitApp(appName, arrayName) {
-      this.items[arrayName] = this.items[arrayName].filter(
+    exitApp(appName) {
+      this.items.openedApps = this.items.openedApps.filter(
         app => app !== appName
       )
     },
@@ -85,7 +81,6 @@ export default {
       setTimeout(() => {
         appName.minimized = true
       }, 200)
-
       let test = this.$refs.window[index]
       gsap.to(test, 0.2, {
         scale: 0,
@@ -140,11 +135,6 @@ export default {
   border: 0.5px solid rgb(180, 180, 180);
 }
 
-/* Content */
-
-.content {
-  padding-bottom: 27px;
-}
 /* Buttons */
 
 .button {

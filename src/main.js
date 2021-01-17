@@ -5,7 +5,7 @@ import store from './store'
 import '@/assets/css/tailwind.css'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
-
+import 'tailwindcss/tailwind.css'
 Vue.config.productionTip = false
 Vue.component('vue-draggable-resizable', VueDraggableResizable)
 

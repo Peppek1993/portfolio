@@ -1,10 +1,10 @@
 <template>
-  <div class=" h-full px-6 py-4 overflow-y-auto font-extralight">
-    <h1 class="text-xl text-center font-light pb-2 text-indigo-300">
-      Portfolio
+  <div class="h-full px-6 overflow-y-auto font-extralight text-center">
+    <h1 class="skillsHeadline">
+      Lightning Bet
     </h1>
-    <img src="./../../assets/lightningbet/header.png" class="py-6" />
-    <p>
+    <img src="./../../assets/lightningbet/header.png" />
+    <p class="pt-2">
       Well, this is awkward.. But since you're already here - this is my
       portfolio! It was built entirely from scratch to make it look like a mix
       between Windows and MacOS. I've mostly used Vue and TailwindCSS with some
@@ -14,14 +14,14 @@
       give me any feedback and/or point out any bugs you might've encountered.
       Cheers!
     </p>
-    <h1 class="text-center font-light text-xl text-indigo-300 py-6">
+    <h1 class="skillsHeadline">
       Technologies used
     </h1>
     <div class="flex items-center justify-center">
       <img src="./../../assets/icons/vue.png" class="w-12" />
       <img src="./../../assets/icons/tailwind.svg" class="w-12" />
     </div>
-    <h1 class="text-center font-light text-xl text-indigo-300 py-6">
+    <h1 class="skillsHeadline">
       Demo & Github
     </h1>
     <div class="flex items-center justify-center pb-10">
