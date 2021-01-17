@@ -52,14 +52,14 @@ export default {
       let openedApps = this.items.openedApps
       let customHeight = document.getElementById('main').clientHeight
       let customWidth = document.getElementById('main').clientWidth
-      for (let i = 0; i < openedApps.length; i++) {
-        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
-        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
-      }
       if (customWidth < 767) {
         for (let i = 0; i < openedApps.length; i++) {
           openedApps[i].minW = customWidth - 40
         }
+      }
+      for (let i = 0; i < openedApps.length; i++) {
+        openedApps[i].posX = customWidth / 2 - openedApps[i].minW / 2
+        openedApps[i].posY = customHeight / 2 - openedApps[i].minH / 2
       }
     },
     getClickPosition(event) {
