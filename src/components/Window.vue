@@ -93,7 +93,7 @@ export default {
       let customWidth = document.getElementById('main').clientWidth
       this.items.apps[el.id].x = this.items.mostRecentClick.x
       this.items.apps[el.id].y = this.items.mostRecentClick.y
-      gsap.from(el, 0.5, {
+      gsap.from(el, 0.3, {
         scale: 0,
         translateX: -customWidth / 2 + this.items.apps[el.id].x,
         translateY: this.items.apps[el.id].y,

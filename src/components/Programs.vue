@@ -1,6 +1,11 @@
 <template>
   <div class="p-4 select-none absolute text-center">
-    <div v-for="(app, index) in apps" ref="appIcon" :key="index" class="pb-24">
+    <div
+      v-for="(app, index) in apps"
+      ref="appIcon"
+      :key="index"
+      class="pb-24 textShadow"
+    >
       <vue-draggable-resizable
         class-name-active="app-active-class"
         :resizable="false"
@@ -26,13 +31,11 @@
       <i
         class="fas fa-lightbulb fa-3x"
         :class="[
-          { 'text-yellow-200': items.mode == 'Dark' },
-          { 'text-indigo-900': items.mode == 'Light' }
+          { 'text-yellow-200': items.mode == 'Light' },
+          { 'text-indigo-900': items.mode == 'Dark' }
         ]"
       ></i>
-      <p class="text-white font-light text-sm textShadow">
-        {{ items.mode }} Mode
-      </p>
+      <p class="text-white font-light text-sm">{{ items.mode }} Mode</p>
     </div>
   </div>
 </template>

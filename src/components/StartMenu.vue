@@ -1,56 +1,55 @@
 <template>
-  <div
-    v-show="items.startMenuOpened"
-    class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none z-50 text-center text-white font-extralight"
-  >
-    <div class="bg-gray-900 w-full pl-12 pt-2">
-      <div v-for="(app, index) in items.apps" :key="index">
-        <div
-          class="my-1 flex items-center justify-start hover:bg-gray-600 duration-150 textShadow "
-          @click="
-            openApp(app)
-            getClickPosition($event)
-            resizeAndPlace()
-          "
-        >
-          <i
-            class="fas fa-x w-12 py-4 bg-blue-200 rounded-lg"
-            :class="[app.icon, app.iconColor]"
-          ></i>
-          <p class="px-2">{{ app.name }}</p>
-        </div>
-      </div>
-    </div>
+  <transition @enter="taskbarEnter" @leave="taskbarLeave">
     <div
-      class="bg-gray-900 h-96 w-12 fixed flex flex-col justify-between sideMenu"
+      ref="startMenu"
+      v-if="items.startMenuOpened"
+      class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none z-50 text-center text-white font-extralight"
     >
-      <div class="text-3xl p-2 flex">
-        <p>☰</p>
-        <span class="px-4 none sideText">Start</span>
-      </div>
-      <div class="flex flex-col w-full">
-        <a
-          href="#"
-          target="_blank"
-          class="flex items-center hover:bg-gray-700 duration-100 px-2"
-        >
-          <i class="fab fa-github fa-lg py-4"></i>
-          <p class="px-4 sideText">Github</p>
-        </a>
-        <div
-          class="flex items-center hover:bg-gray-700 duration-100 px-2 cursor-pointer"
-          @click="reload"
-        >
-          <i class="fas fa-power-off fa-lg py-4"></i>
-          <p class="px-4 sideText">Power</p>
+      <nav class="bg-gray-900 w-full pl-12 pt-2">
+        <ul v-for="(app, index) in items.apps" :key="index">
+          <li
+            class="my-1 flex items-center justify-start hover:bg-gray-600 duration-150 textShadow "
+            @click="
+              openApp(app)
+              getClickPosition($event)
+              resizeAndPlace()
+            "
+          >
+            <i
+              class="fas fa-lg w-12 py-4 bg-blue-200 rounded-lg"
+              :class="[app.icon, app.iconColor]"
+            ></i>
+            <p class="px-2">{{ app.name }}</p>
+          </li>
+        </ul>
+      </nav>
+      <div
+        class="bg-gray-900 h-96 w-12 fixed flex flex-col justify-between sideMenu"
+      >
+        <div class="text-3xl p-2">☰</div>
+        <div class="flex flex-col">
+          <a
+            href="https://github.com/Peppek1993"
+            target="_blank"
+            class="px-2 hover:text-green-300 duration-200"
+          >
+            <i class="fab fa-github fa-lg py-4"></i>
+          </a>
+          <div
+            class="px-2 cursor-pointer hover:text-green-300 duration-200"
+            @click="reload"
+          >
+            <i class="fas fa-power-off fa-lg py-4"></i>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { gsap } from 'gsap'
 export default {
   computed: {
     ...mapGetters(['items'])
@@ -86,26 +85,13 @@ export default {
         x: event.clientX,
         y: event.clientY
       }
+    },
+    taskbarEnter() {
+      let { startMenu } = this.$refs
+      gsap.from(startMenu, 0.5, { opacity: 0, translateY: 300, ease: 'power3' })
     }
   }
 }
 </script>
 
-<style>
-/* Side menu animations */
-.sideMenu {
-  transition: width 200ms ease;
-}
-
-.sideMenu:hover .sideText {
-  display: block;
-}
-.sideMenu:hover {
-  width: 12rem;
-  opacity: 90%;
-}
-
-.sideText {
-  display: none;
-}
-</style>
+<style></style>

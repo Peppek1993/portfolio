@@ -122,7 +122,7 @@ export default new Vuex.Store({
     openedApps: [],
     activeApp: '',
     startMenuOpened: false,
-    mode: 'Dark',
+    mode: 'Light',
     mostRecentClick: null,
     currentRef: null
   },
