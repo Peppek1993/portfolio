@@ -31,11 +31,13 @@
       <i
         class="fas fa-lightbulb fa-3x"
         :class="[
-          { 'text-yellow-200': items.mode == 'Light' },
-          { 'text-indigo-900': items.mode == 'Dark' }
+          { 'text-yellow-200': items.mode == 'Dark' },
+          { 'text-indigo-900': items.mode == 'Light' }
         ]"
       ></i>
-      <p class="text-white font-light text-sm">{{ items.mode }} Mode</p>
+      <p class="text-white font-light text-sm textShadow">
+        {{ items.mode }} Mode
+      </p>
     </div>
   </div>
 </template>

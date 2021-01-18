@@ -63,7 +63,7 @@ export default {
 
 /* Wallpapers */
 .light {
-  background: url('./assets/dark_wallpaper.jpg') no-repeat center center fixed
+  background: url('./assets/light_wallpaper.jpg') no-repeat center center fixed
     #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -72,7 +72,7 @@ export default {
 }
 
 .dark {
-  background: url('./assets/light_wallpaper.jpg') no-repeat center center fixed
+  background: url('./assets/dark_wallpaper.jpg') no-repeat center center fixed
     #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -82,7 +82,7 @@ export default {
 
 @media (max-width: 768px) {
   .darkMobile {
-    background: url('./assets/light_mobile.jpg') no-repeat center center fixed
+    background: url('./assets/dark_mobile.jpg') no-repeat center center fixed
       #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -90,7 +90,7 @@ export default {
     background-size: cover;
   }
   .lightMobile {
-    background: url('./assets/dark_mobile.jpg') no-repeat center center fixed
+    background: url('./assets/light_mobile.jpg') no-repeat center center fixed
       #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
