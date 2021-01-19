@@ -1,5 +1,5 @@
 <template>
-  <transition @enter="taskbarEnter" @leave="taskbarLeave">
+  <transition @enter="taskbarEnter">
     <div
       ref="startMenu"
       v-if="items.startMenuOpened"
