@@ -1,9 +1,9 @@
 <template>
   <div class="h-full px-6 overflow-y-auto font-extralight text-center">
     <h1 class="skillsHeadline">
-      Lightning Bet
+      Portfolio
     </h1>
-    <img src="./../../assets/lightningbet/header.png" />
+    <img src="./../../assets/portfolio.png" class="rounded-lg" />
     <p class="pt-2">
       Well, this is awkward.. But since you're already here - this is my
       portfolio! It was built entirely from scratch to make it look like a mix
@@ -20,15 +20,16 @@
     <div class="flex items-center justify-center">
       <img src="./../../assets/icons/vue.png" class="w-12" />
       <img src="./../../assets/icons/tailwind.svg" class="w-12" />
+      <img src="./../../assets/icons/gsap.svg" class="w-12" />
     </div>
     <h1 class="skillsHeadline">
       Demo & Github
     </h1>
     <div class="flex items-center justify-center pb-10">
-      <a href="https://peppek1993.github.io/LightningBet/" target="_blank"
+      <a href="https://peppek1993.github.io/portfolio/" target="_blank"
         ><i class="fas fa-desktop fa-3x px-4"></i
       ></a>
-      <a href="https://github.com/Peppek1993/LightningBet" target="_blank">
+      <a href="https://github.com/Peppek1993/portfolio" target="_blank">
         <i class="fab fa-github fa-3x px-4"></i
       ></a>
     </div>
