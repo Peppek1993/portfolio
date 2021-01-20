@@ -6,12 +6,7 @@
       :key="index"
       class="pb-24 textShadow"
     >
-      <vue-draggable-resizable
-        class-name-active="app-active-class"
-        :resizable="false"
-        :w="80"
-        :h="80"
-      >
+      <vue-draggable-resizable handles="[]" :resizable="false" :w="80" :h="80">
         <div
           class="appClass h-20 w-20 border-none border"
           @click="

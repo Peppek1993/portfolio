@@ -47,7 +47,6 @@ export default {
 }
 
 /* Desktop icon highlight */
-.app-active-class,
 .appClass:hover {
   background-color: rgba(165, 215, 238, 0.5);
   border: 1px solid rgba(165, 215, 238, 0.7);
