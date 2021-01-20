@@ -1,8 +1,10 @@
 <template>
   <section class="text-gray-700 body-font p-4 font-extralight">
     <form
-      method="POST"
+      name="ask-question"
+      method="post"
       data-netlify="true"
+      data-netlify-honeypot="bot-field"
       class="flex flex-col w-full rounded-lg"
     >
       <label class="text-white"
