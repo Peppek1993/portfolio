@@ -15,6 +15,18 @@
     <title>Adam Partyka / Front-end Developer</title>
   </head>
   <body>
+    <form
+      name="ask-question"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="ask-question" />
+      <input type="email" name="email" />
+      <input type="text" name="name" />
+      <textarea type="message" name="message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
