@@ -1,8 +1,8 @@
 <template>
   <transition @enter="taskbarEnter">
     <div
-      ref="startMenu"
       v-if="items.startMenuOpened"
+      ref="startMenu"
       class="fixed bottom-8 w-64 h-96 flex opacity-90 shadow-lg select-none z-50 text-center text-white font-extralight"
     >
       <nav class="bg-gray-900 w-full pl-12 pt-2">
