@@ -13,7 +13,7 @@
         :h="80"
       >
         <div
-          class="appClass h-20 w-20"
+          class="appClass h-20 w-20 border-none border"
           @click="
             openApp(app)
             getClickPosition($event, index)
