@@ -1,7 +1,7 @@
 <template>
   <div
     id="main"
-    class="h-screen overflow-hidden duration-500"
+    class="h-screen overflow-hidden duration-500 cursor-default"
     :class="[
       { 'light lightMobile': items.mode == 'Light' },
       { 'dark darkMobile text-white textShadow': items.mode == 'Dark' }
