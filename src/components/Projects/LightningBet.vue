@@ -3,7 +3,7 @@
     <h1 class="skillsHeadline">
       Lightning Bet
     </h1>
-    <img src="./../../assets/lightningbet/header.png" />
+    <img src="./../../assets/lightningbet/header.png" class="rounded-lg" />
     <p class="pt-2">
       Lightning Bet is a prototype for an esport/sport betting website. You can
       place bets on different matches in various disciplines including Counter
