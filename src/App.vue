@@ -1,6 +1,6 @@
 <template>
   <div
-    id="main preload-01 preload-02 preload-03"
+    id="main"
     class="h-screen overflow-hidden duration-500 cursor-default"
     :class="[
       { 'light lightMobile': items.mode == 'Light' },
@@ -96,17 +96,5 @@ export default {
     -o-background-size: cover;
     background-size: cover;
   }
-}
-
-#preload-01 {
-  background: url('./assets/light_wallpaper.jpg') no-repeat -9999px -9999px;
-}
-
-#preload-02 {
-  background: url('./assets/light_mobile.jpg') no-repeat -9999px -9999px;
-}
-
-#preload-03 {
-  background: url('./assets/aboutme.jpg') no-repeat -9999px -9999px;
 }
 </style>
