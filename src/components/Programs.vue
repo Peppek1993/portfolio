@@ -4,7 +4,7 @@
       v-for="(app, index) in apps"
       ref="appIcon"
       :key="index"
-      class="pb-24 textShadow"
+      class="pb-2 textShadow"
     >
       <vue-draggable-resizable
         :handles="[]"
