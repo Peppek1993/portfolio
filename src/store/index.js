@@ -63,7 +63,7 @@ export default new Vuex.Store({
         posX: null,
         posY: null,
         minW: 300,
-        minH: 400,
+        minH: 450,
         minimized: false,
         maximized: false,
         x: null,
