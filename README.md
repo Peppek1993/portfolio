@@ -10,6 +10,8 @@
 
 ## General info
 
+![Desktop version](https://user-images.githubusercontent.com/58306082/105356977-6c2d7b80-5bf4-11eb-8832-a8ceefd0496c.png)
+
 This is my personal portfolio website. It was written entirely from scratch with just a handful of useful vue libraries. The framework I used is Vue and I've used Tailwind for CSS. Feel free to comment it and/or point out any bugs you might've came across, I'd really appreciate it. Thanks! :^)
 
 ## Artist credit
