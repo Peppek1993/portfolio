@@ -1,10 +1,10 @@
 <template>
-  <div class="p-4 select-none absolute text-center">
+  <div class="p-4 select-none text-center flex absolute" :class="alignment">
     <div
       v-for="(app, index) in apps"
       ref="appIcon"
       :key="index"
-      class="pb-2 textShadow"
+      class="pb-2 textShadow w-20"
     >
       <vue-draggable-resizable
         :handles="[]"
@@ -14,7 +14,7 @@
         class-name="icon"
       >
         <div
-          class="appClass h-20 w-20 border-none"
+          class="appClass h-20 border-none"
           @click="
             openApp(app)
             getClickPosition($event, index)
@@ -36,9 +36,9 @@
           { 'text-indigo-900': items.mode == 'Light' }
         ]"
       ></i>
-      <p class="text-white font-light text-sm textShadow">
-        {{ items.mode }} Mode
-      </p>
+      <h4 class="text-white font-light text-sm textShadow">
+        {{ currentMode }} Mode
+      </h4>
     </div>
   </div>
 </template>
@@ -51,6 +51,15 @@ export default {
     ...mapGetters(['items']),
     apps() {
       return this.items.apps.filter(app => app.tag == 'app')
+    },
+    currentMode() {
+      if (this.items.mode == 'Light') return 'Dark'
+      else return 'Light'
+    },
+    alignment() {
+      if (window.innerHeight > 600 || window.innerHeight > window.innerWidth) {
+        return 'flex-col'
+      } else return 'flex-row'
     }
   },
   mounted() {
@@ -84,7 +93,16 @@ export default {
       let customWidth = document.getElementById('main').clientWidth
       if (customWidth < 767) {
         for (let i = 0; i < openedApps.length; i++) {
-          openedApps[i].minW = customWidth - 40
+          if (openedApps[i].minW > customWidth) {
+            openedApps[i].minW = customWidth - 40
+          }
+        }
+      }
+      if (customHeight < 500) {
+        for (let i = 0; i < openedApps.length; i++) {
+          if (openedApps[i].minH > customHeight) {
+            openedApps[i].minH = customHeight - 100
+          }
         }
       }
       for (let i = 0; i < openedApps.length; i++) {

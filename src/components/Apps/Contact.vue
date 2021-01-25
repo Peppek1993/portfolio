@@ -1,5 +1,5 @@
 <template>
-  <section class="text-gray-700 body-font p-4 font-extralight">
+  <section class=" body-font p-4 font-extralight overflow-y-auto">
     <form
       name="ask-question"
       method="post"
@@ -8,7 +8,7 @@
       class="flex flex-col w-full rounded-lg"
     >
       <input type="hidden" name="form-name" value="ask-question" />
-      <label class="text-white"
+      <label
         >Email:
         <input
           id="email"
@@ -19,7 +19,7 @@
           required
         />
       </label>
-      <label class="text-white">
+      <label class="">
         Name:
         <input
           id="name"
@@ -30,7 +30,7 @@
           required
         />
       </label>
-      <label class="text-white">
+      <label>
         Message:
         <textarea
           id="message"

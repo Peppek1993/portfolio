@@ -1,21 +1,20 @@
 <template>
   <div class="h-full px-6 overflow-y-auto font-extralight text-center pb-6">
     <section>
-      <h1 class="skillsHeadline">
+      <h2 class="skillsHeadline">
         Skills
-      </h1>
-      <p class="pb-4">
+      </h2>
+      <p class="pb-4 border-b">
         I'm not a type of person to list 25 libraries/technologies/languages
         that I barely spent a few hours on and mark myself as proficient in
         them. I'm going to use this page to inform you on what areas of WebDev I
         feel confident in and can move around freely.
       </p>
-      <hr />
     </section>
     <section>
-      <h1 class="skillsHeadline">
+      <h2 class="skillsHeadline">
         Basics
-      </h1>
+      </h2>
       <div class="flex items-center justify-center pb-2">
         <div class="skillsIcon">
           <img
@@ -42,16 +41,15 @@
           <h2>Javascript</h2>
         </div>
       </div>
-      <p class="pb-4">
+      <p class="pb-4 border-b">
         The Triforce of Web Dev - HTML, CSS & Javascript. I can say that I'm
         fairly confident in these and have spent countless hours learning the
         ins & outs of each.
       </p>
-      <hr />
     </section>
     <section>
-      <h1 class="skillsHeadline">Vue</h1>
-      <div class="items-center flex flex-col pb-4">
+      <h2 class="skillsHeadline">Vue</h2>
+      <div class="items-center flex flex-col pb-4 border-b">
         <img
           src="https://s.svgbox.net/files.svg?ic=vue&fill=000"
           width="48"
@@ -64,11 +62,10 @@
           learned a handful of useful vue-specific libraries.
         </p>
       </div>
-      <hr />
     </section>
     <section>
-      <h1 class="skillsHeadline">Tailwind</h1>
-      <div class="items-center flex flex-col pb-4">
+      <h2 class="skillsHeadline">Tailwind</h2>
+      <div class="items-center flex flex-col pb-4 border-b">
         <img
           src="https://s.svgbox.net/files.svg?ic=tailwind&fill=000"
           width="48"
@@ -81,10 +78,9 @@
           style my website fairly quickly.
         </p>
       </div>
-      <hr />
     </section>
     <section>
-      <h1 class="skillsHeadline">Other</h1>
+      <h2 class="skillsHeadline">Other</h2>
       <div class="flex items-center justify-center pb-4">
         <div class="skillsIcon">
           <img
@@ -118,7 +114,12 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters(['items'])
+  }
+}
 </script>
 
 <style></style>

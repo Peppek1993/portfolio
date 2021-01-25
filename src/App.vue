@@ -29,14 +29,6 @@ export default {
   },
   computed: {
     ...mapGetters(['items'])
-  },
-  mounted() {
-    var img1 = new Image()
-    img1.src = './assets/light_wallpaper.jpg'
-    var img2 = new Image()
-    img2.src = './assets/light_mobile.jpg'
-    var img3 = new Image()
-    img3.src = './assets/aboutme.jpg'
   }
 }
 </script>

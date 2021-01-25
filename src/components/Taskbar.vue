@@ -26,8 +26,8 @@
         <p class="px-1 py-1 hidden md:inline-block">{{ app.name }}</p>
       </div>
     </div>
-    <div class="col-start-3 col-end-4 py-1  font-extralight">
-      28.12 17:32
+    <div class="col-start-3 col-end-4 py-1  font-extralight pr-2">
+      {{ currentDate }} {{ currentTime }}
     </div>
   </div>
 </template>
@@ -37,7 +37,13 @@ import { mapGetters } from 'vuex'
 import { gsap } from 'gsap'
 export default {
   computed: {
-    ...mapGetters(['items'])
+    ...mapGetters(['items']),
+    currentDate() {
+      return new Date().toLocaleDateString()
+    },
+    currentTime() {
+      return new Date().toLocaleTimeString([], { timeStyle: 'short' })
+    }
   },
   methods: {
     makeActive(appName) {
@@ -68,7 +74,7 @@ export default {
 <style>
 .customGrid {
   display: grid;
-  grid-template-columns: 6vh 1fr 12vh;
+  grid-template-columns: 6vh 1fr auto;
 }
 .activeApp {
   background-color: rgba(205, 99, 207, 0.8);

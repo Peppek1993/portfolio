@@ -1,8 +1,8 @@
 <template>
   <div class="h-full px-6 overflow-y-auto font-extralight text-center">
-    <h1 class="skillsHeadline">
+    <h2 class="skillsHeadline">
       Portfolio
-    </h1>
+    </h2>
     <img src="./../../assets/portfolio.png" class="rounded-lg" />
     <p class="pt-2">
       Well, this is awkward.. But since you're already here - this is my
@@ -14,17 +14,17 @@
       give me any feedback and/or point out any bugs you might've encountered.
       Cheers!
     </p>
-    <h1 class="skillsHeadline">
+    <h2 class="skillsHeadline">
       Technologies used
-    </h1>
+    </h2>
     <div class="flex items-center justify-center">
       <img src="./../../assets/icons/vue.png" class="w-12" />
       <img src="./../../assets/icons/tailwind.svg" class="w-12" />
       <img src="./../../assets/icons/gsap.svg" class="w-12" />
     </div>
-    <h1 class="skillsHeadline">
+    <h2 class="skillsHeadline">
       Demo & Github
-    </h1>
+    </h2>
     <div class="flex items-center justify-center pb-10">
       <a href="https://peppek1993.github.io/portfolio/" target="_blank"
         ><i class="fas fa-desktop fa-3x px-4"></i

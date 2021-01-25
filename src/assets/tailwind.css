@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 .skillsHeadline {
-  @apply text-2xl font-light text-indigo-300 py-4;
+  @apply text-2xl font-light py-4;
 }
 
 .skillsIcon {

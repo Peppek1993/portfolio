@@ -1,12 +1,10 @@
 <template>
-  <div
-    class="h-full rounded-b-xl font-light text-lg overflow-y-auto sm:overflow-hidden overflow-x-hidden p-4"
-  >
+  <div class="h-full rounded-b-xl font-light text-lg overflow-y-auto p-4">
     <img
       src="./../../assets/aboutme.jpg"
-      class="w-32 sm:w-48 rounded-md shadow float-left mr-2"
+      class="w-32 sm:w-48 rounded-md shadow float-left mr-6"
     />
-    <h1 class="text-3xl text-indigo-200">Hey!</h1>
+    <h1 class="text-3xl text-yellow-500">Hey!</h1>
     <p class="text-base">
       My name is Adam and I live in Cracow, Poland. I'm a self-taught web
       developer, focusing mostly on the front end. I've graduated from Kielce
