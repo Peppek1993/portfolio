@@ -1,5 +1,7 @@
 <template>
-  <div class="p-4 select-none text-center flex absolute flex-col sm:flex-row">
+  <div
+    class="p-4 select-none text-center flex absolute flex-col sm:flex-row md:flex-col"
+  >
     <div
       v-for="(app, index) in apps"
       ref="appIcon"
