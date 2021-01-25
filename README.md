@@ -27,4 +27,4 @@ The wallpaper was made by an awesome artist going by the alias of Mad Boogie Cre
 ## Demo
 
 The working demo can be found here:
-https://peppek1993.github.io/portfolio/
+https://adampartyka.com
