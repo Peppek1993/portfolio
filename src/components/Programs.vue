@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 select-none text-center flex absolute" :class="alignment">
+  <div class="p-4 select-none text-center flex absolute flex-col sm:flex-row">
     <div
       v-for="(app, index) in apps"
       ref="appIcon"
@@ -55,11 +55,6 @@ export default {
     currentMode() {
       if (this.items.mode == 'Light') return 'Dark'
       else return 'Light'
-    },
-    alignment() {
-      if (window.innerHeight > 600 || window.innerHeight > window.innerWidth) {
-        return 'flex-col'
-      } else return 'flex-row'
     }
   },
   mounted() {
