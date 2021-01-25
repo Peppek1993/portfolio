@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="col-start-3 col-end-4 py-1  font-extralight pr-2">
-      {{ currentDate }} {{ currentTime }}
+      {{ currentTime }}
     </div>
   </div>
 </template>
@@ -38,9 +38,6 @@ import { gsap } from 'gsap'
 export default {
   computed: {
     ...mapGetters(['items']),
-    currentDate() {
-      return new Date().toLocaleDateString()
-    },
     currentTime() {
       return new Date().toLocaleTimeString([], { timeStyle: 'short' })
     }
