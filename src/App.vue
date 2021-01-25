@@ -34,6 +34,9 @@ export default {
 </script>
 
 <style>
+body {
+  overflow: hidden;
+}
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
