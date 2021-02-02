@@ -26,7 +26,7 @@
       Demo & Github
     </h2>
     <div class="flex items-center justify-center pb-10">
-      <a href="https://peppek1993.github.io/portfolio/" target="_blank"
+      <a href="https://adampartyka.com" target="_blank"
         ><i class="fas fa-desktop fa-3x px-4"></i
       ></a>
       <a href="https://github.com/Peppek1993/portfolio" target="_blank">
